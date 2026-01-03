@@ -1,5 +1,3 @@
-
-````markdown
 # Council of Experts 🧠
 
 **Council of Experts** is a FastAPI-based web app that takes a user problem and streams advice from 3 AI-simulated expert personas in real-time. Each expert responds from their unique perspective.
