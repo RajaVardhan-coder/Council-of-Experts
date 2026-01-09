@@ -21,6 +21,8 @@
 - **Other**: Pydantic, CORS, dotenv
 
 ---
+![Council of Experts Demo UI]([path-or-url-to-image](https://github.com/RajaVardhan-coder/Council-of-Experts/blob/main/assets/demo-ui.png))
+---
 
 ## Setup
 
