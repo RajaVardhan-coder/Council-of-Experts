@@ -43,11 +43,13 @@ python -m pip install -r requirements.txt
 ```bash
 cp .env.example .env
 # Then add your GEMINI_API_KEY
+# GEMINI_API_KEY=""
 ```
 
 4. **Run the server**
 
 ```bash
+cd app
 uvicorn main:app --reload
 ```
 
