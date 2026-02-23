@@ -26,3 +26,5 @@ PyYAML~=6.0
 
 tenacity~=9.1
 tqdm~=4.67
+
+python-dotenv~=1.2.1
