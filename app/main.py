@@ -18,7 +18,7 @@ app.mount("/ui", StaticFiles(directory="static", html=True), name="static")
 app.add_middleware(
     CORSMiddleware,
     # WARNING: allow_origins=["*"] is for local dev only
-    allow_origins=["*"],  # dev only
+    allow_origins=["https://council-of-experts.onrender.com"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
