@@ -83,7 +83,7 @@ async function start() {
 
   document.getElementById("experts").innerHTML = "";
 
-  const response = await fetch("http://localhost:8000/advice", {
+  const response = await fetch("/advice", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ problem })
