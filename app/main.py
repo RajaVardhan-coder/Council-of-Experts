@@ -13,6 +13,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from graph import run_graph
 from nodes.expert import generate_persona_advice_stream
 
+used_ips = set()
+
 app = FastAPI(title="Expert Advice API")
 app.add_middleware(
     CORSMiddleware,
@@ -34,6 +36,22 @@ class ProblemRequest(BaseModel):
 
 @app.post("/advice")
 async def get_advice(payload: ProblemRequest, request: Request):
+     # Get client IP (Render uses proxy → check headers first)
+    client_ip = request.headers.get("x-forwarded-for")
+    if client_ip:
+        client_ip = client_ip.split(",")[0]
+    else:
+        client_ip = request.client.host
+
+    # Restrict to one attempt per IP
+    if client_ip in used_ips:
+        raise HTTPException(
+            status_code=429,
+            detail="You have already used your one allowed attempt.",
+        )
+
+    # Mark IP as used
+    used_ips.add(client_ip)
     
     try:
         # 1️⃣ Run graph (NO streaming here)
