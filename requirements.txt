@@ -4,27 +4,7 @@
 # Project dependencies for the main application
 
 fastapi~=0.127
-uvicorn~=0.40
-
+uvicorn[standard]~=0.40
 pydantic~=2.12
-
 google-genai~=1.56
-
 langgraph~=1.0
-langgraph-prebuilt~=1.0
-langgraph-checkpoint~=3.0
-langgraph-sdk~=0.3
-
-langchain-core~=1.2
-langsmith~=0.5
-
-httpx~=0.28
-requests~=2.32
-
-orjson~=3.11
-PyYAML~=6.0
-
-tenacity~=9.1
-tqdm~=4.67
-
-python-dotenv~=1.2.1
