@@ -14,11 +14,14 @@ from graph import run_graph
 from nodes.expert import generate_persona_advice_stream
 
 app = FastAPI(title="Expert Advice API")
-app.mount("/ui", StaticFiles(directory="static", html=True), name="static")
 app.add_middleware(
     CORSMiddleware,
     # WARNING: allow_origins=["*"] is for local dev only
-    allow_origins=["https://council-of-experts.onrender.com"],
+    allow_origins=[
+        "https://council-of-experts.onrender.com",
+        "http://localhost:8000",
+        "http://127.0.0.1:8000",
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,7 +35,6 @@ class ProblemRequest(BaseModel):
 @app.post("/advice")
 async def get_advice(payload: ProblemRequest, request: Request):
     
-
     try:
         # 1️⃣ Run graph (NO streaming here)
         graph_result = await run_graph(payload.problem)
@@ -89,3 +91,5 @@ async def get_advice(payload: ProblemRequest, request: Request):
 
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+app.mount("/", StaticFiles(directory="static", html=True), name="static")
